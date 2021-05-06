@@ -6,12 +6,6 @@ module HammerCLIForeman
   module HostgroupUpdateCreateCommons
 
     def self.included(base)
-      base.option "--puppet-class-ids", "PUPPETCLASS_IDS", _("List of puppetclass ids"),
-        :format => HammerCLI::Options::Normalizers::List.new,
-        :attribute_name => :option_puppetclass_ids
-      base.option "--puppet-classes", "PUPPET_CLASS_NAMES", "",
-        :format => HammerCLI::Options::Normalizers::List.new,
-        :attribute_name => :option_puppetclass_names
       base.option "--puppet-ca-proxy", "PUPPET_CA_PROXY_NAME", _("Name of puppet CA proxy")
       base.option "--puppet-proxy", "PUPPET_PROXY_NAME",  _("Name of puppet proxy")
       base.option "--parent", "PARENT_NAME",  _("Name of parent hostgroup")
@@ -97,7 +91,6 @@ module HammerCLIForeman
           field nil, _("Partition Table"), Fields::SingleReference, :key => :ptable
           field :pxe_loader, _("PXE Loader"), Fields::Field, :hide_blank => true
         end
-        HammerCLIForeman::References.puppetclasses(self)
         HammerCLIForeman::References.parameters(self)
         HammerCLIForeman::References.taxonomies(self)
       end
@@ -128,24 +121,6 @@ module HammerCLIForeman
 
       build_options
     end
-
-
-    class PuppetClassesCommand < HammerCLIForeman::ListCommand
-      command_name "puppet-classes"
-      resource :puppetclasses
-
-      output HammerCLIForeman::PuppetClass::ListCommand.output_definition
-
-      def send_request
-        HammerCLIForeman::PuppetClass::ListCommand.unhash_classes(super)
-      end
-
-      build_options do |o|
-        o.without(:host_id, :environment_id)
-        o.expand.only(:hostgroups)
-      end
-    end
-
 
     class SetParameterCommand < HammerCLIForeman::Parameter::SetCommand
       desc _("Create or update parameter for a hostgroup")

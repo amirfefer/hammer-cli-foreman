@@ -66,7 +66,6 @@ module HammerCLIForeman
       :override_value =>   [],
       :ptable =>           [ s_name(_("Partition table name")) ],
       :proxy =>            [ s_name(_("Proxy name")) ],
-      :puppetclass =>      [ s_name(_("Puppet class name")) ],
       :config_report =>    [],
       :role =>             [ s_name(_("User role name")) ],
       :setting =>          [ s_name(_("Setting name"), :editable => false) ],
@@ -127,28 +126,6 @@ module HammerCLIForeman
         end
       end
       scoped_options
-    end
-
-    def puppetclass_ids(options)
-      resource_name = :puppetclasses
-      resource = @api.resource(resource_name)
-      results = if (ids = options[HammerCLI.option_accessor_name("ids")])
-        ids
-      elsif (ids = nil_from_searchables(resource_name, options, :plural => true))
-        ids
-      elsif options_not_set?(resource, options)
-        raise MissingSearchOptions.new(_("Missing options to search %s") % resource.name, resource)
-      elsif options_empty?(resource, options)
-        []
-      else
-        require('hammer_cli_foreman/puppet_class')
-        results = HammerCLIForeman::PuppetClass::ListCommand.unhash_classes(
-          resolved_call(resource_name, :index, options, :multi)
-        )
-        raise ResolverError.new(_("one of %s not found.") % resource.name, resource) if results.count < expected_record_count(options, resource, :multi)
-
-        results.map { |r| r['id'] }
-      end
     end
 
     def environment_id(options)
@@ -329,17 +306,6 @@ module HammerCLIForeman
         end
       end
       0
-    end
-
-    # puppet class search results are in non-standard format
-    # and needs to be un-hashed first
-    def puppetclass_id(options)
-      return options[HammerCLI.option_accessor_name("id")] if options[HammerCLI.option_accessor_name("id")]
-      resource = @api.resource(:puppetclasses)
-      results = find_resource_raw(:puppetclasses, options)
-      require('hammer_cli_foreman/puppet_class')
-      results = HammerCLIForeman::PuppetClass::ListCommand.unhash_classes(results)
-      pick_result(results, resource)['id']
     end
 
     def options_empty?(resource, options)

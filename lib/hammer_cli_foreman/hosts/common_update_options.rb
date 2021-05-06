@@ -20,16 +20,7 @@ module HammerCLIForeman
         base.option '--puppet-ca-proxy', 'PUPPET_CA_PROXY_NAME', '',
                     referenced_resource: 'puppet_ca_proxy',
                     aliased_resource: 'puppet_ca_proxy'
-        base.option_family(
-          format: HammerCLI::Options::Normalizers::List.new,
-          aliased_resource: 'puppet-class',
-          description: 'Names/Ids of associated puppet classes'
-        ) do
-          parent '--puppet-class-ids', 'PUPPET_CLASS_IDS', '',
-                 attribute_name: :option_puppetclass_ids
-          child '--puppet-classes', 'PUPPET_CLASS_NAMES', '',
-                 attribute_name: :option_puppetclass_names
-        end
+
         bme_options = {}
         bme_options[:default] = 'true' if base.action.to_sym == :create
 

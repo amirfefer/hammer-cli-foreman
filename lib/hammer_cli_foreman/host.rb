@@ -189,23 +189,6 @@ module HammerCLIForeman
       build_options
     end
 
-
-    class PuppetClassesCommand < HammerCLIForeman::ListCommand
-      command_name "puppet-classes"
-      resource :puppetclasses
-
-      output HammerCLIForeman::PuppetClass::ListCommand.output_definition
-
-      def send_request
-        HammerCLIForeman::PuppetClass::ListCommand.unhash_classes(super)
-      end
-
-      build_options do |o|
-        o.without(:hostgroup_id, :environment_id)
-        o.expand.only(:hosts)
-      end
-    end
-
     class ConfigReportsCommand < HammerCLIForeman::ListCommand
       command_name 'config-reports'
       resource :config_reports, :index

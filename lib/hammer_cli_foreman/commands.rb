@@ -7,8 +7,6 @@ module HammerCLIForeman
     :usergroups => :user_groups,
     :ptable => :partition_table,
     :ptables => :partition_tables,
-    :puppetclass => :puppet_class,
-    :puppetclasses => :puppet_classes,
     :environment => :puppet_environment,
     :environments => :puppet_environments
   }
