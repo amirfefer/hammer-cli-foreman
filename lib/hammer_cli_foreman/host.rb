@@ -31,8 +31,6 @@ module HammerCLIForeman
       end
 
       build_options :without => [:include]
-
-      extend_with(HammerCLIForeman::CommandExtensions::PuppetEnvironment.new)
     end
 
 
@@ -293,7 +291,6 @@ module HammerCLIForeman
         end
       end
 
-      extend_with(HammerCLIForeman::CommandExtensions::PuppetEnvironment.new)
       extend_with(HammerCLIForeman::CommandExtensions::Hosts::Help::Interfaces.new)
       extend_with(HammerCLIForeman::CommandExtensions::Hosts::Help::ComputeResources.custom(add_host_specific_attrs: true).new)
     end
@@ -324,7 +321,6 @@ module HammerCLIForeman
         sources
       end
 
-      extend_with(HammerCLIForeman::CommandExtensions::PuppetEnvironment.new)
       extend_with(HammerCLIForeman::CommandExtensions::Hosts::Help::Interfaces.new)
       extend_with(HammerCLIForeman::CommandExtensions::Hosts::Help::ComputeResources.custom(add_host_specific_attrs: true).new)
     end

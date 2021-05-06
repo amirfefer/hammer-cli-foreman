@@ -111,8 +111,6 @@ module HammerCLIForeman
 
       success_message _("Hostgroup created.")
       failure_message _("Could not create the hostgroup")
-
-      extend_with(HammerCLIForeman::CommandExtensions::PuppetEnvironment.new)
     end
 
 
@@ -121,8 +119,6 @@ module HammerCLIForeman
 
       success_message _("Hostgroup updated.")
       failure_message _("Could not update the hostgroup")
-
-      extend_with(HammerCLIForeman::CommandExtensions::PuppetEnvironment.new)
     end
 
 

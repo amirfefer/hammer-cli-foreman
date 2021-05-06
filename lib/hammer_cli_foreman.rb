@@ -60,10 +60,6 @@ module HammerCLIForeman
       'HammerCLIForeman::Domain', 'hammer_cli_foreman/domain'
     )
 
-    HammerCLI::MainCommand.lazy_subcommand('puppet-environment', _("Manipulate Puppet environments"),
-      'HammerCLIForeman::PuppetEnvironment', 'hammer_cli_foreman/puppet_environment'
-    )
-
     HammerCLI::MainCommand.lazy_subcommand('fact', _("Search facts"),
       'HammerCLIForeman::Fact', 'hammer_cli_foreman/fact'
     )
