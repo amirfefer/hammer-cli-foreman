@@ -149,10 +149,6 @@ module HammerCLIForeman
       'HammerCLIForeman::Usergroup', 'hammer_cli_foreman/usergroup'
     )
 
-    HammerCLI::MainCommand.lazy_subcommand('config-group', _("Manipulate config groups"),
-      'HammerCLIForeman::ConfigGroup', 'hammer_cli_foreman/config_group'
-    )
-
     HammerCLI::MainCommand.lazy_subcommand('ping', _("Get the status of the server and/or it's subcomponents"),
       'HammerCLIForeman::PingCommand', 'hammer_cli_foreman/ping'
     )
