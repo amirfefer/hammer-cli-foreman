@@ -121,10 +121,6 @@ module HammerCLIForeman
       'HammerCLIForeman::Role', 'hammer_cli_foreman/role'
     )
 
-    HammerCLI::MainCommand.lazy_subcommand('sc-param', _("Manipulate smart class parameters"),
-      'HammerCLIForeman::SmartClassParameter', 'hammer_cli_foreman/smart_class_parameter'
-    )
-
     HammerCLI::MainCommand.lazy_subcommand('proxy', _("Manipulate smart proxies"),
       'HammerCLIForeman::SmartProxy', 'hammer_cli_foreman/smart_proxy'
     )

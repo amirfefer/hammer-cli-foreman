@@ -1,4 +1,3 @@
-require 'hammer_cli_foreman/smart_class_parameter'
 require 'hammer_cli_foreman/puppet_class'
 
 module HammerCLIForeman
@@ -139,15 +138,6 @@ module HammerCLIForeman
       success_message _("Hostgroup parameter deleted.")
 
       build_options
-    end
-
-    class SCParamsCommand < HammerCLIForeman::SmartClassParametersList
-      build_options_for :hostgroups
-
-      def validate_options
-        super
-        validator.any(:option_hostgroup_name, :option_hostgroup_id).required
-      end
     end
 
     class RebuildConfigCommand < HammerCLIForeman::SingleResourceCommand

@@ -73,7 +73,6 @@ module HammerCLIForeman
       :template =>         [],
       :user =>             [ s("login", _("User's login to search by")) ],
       :common_parameter =>      [ s_name(_("Common parameter name")) ],
-      :smart_class_parameter => [ s_name(_("Smart class parameter name"), :editable => false) ],
       :template_combination => [],
       :compute_attribute => []
     }
@@ -320,14 +319,6 @@ module HammerCLIForeman
         values = options[HammerCLI.option_accessor_name(s.plural_name.to_s)]
         values.nil?
       end
-    end
-
-    def create_smart_class_parameters_search_options(options, mode = nil)
-      search_options = {}
-      value = options[HammerCLI.option_accessor_name('name')]
-      search_options[:search] = "key = \"#{value}\""
-      search_options[:puppetclass_id] = puppetclass_id(scoped_options("puppetclass", options))
-      search_options
     end
 
     # @param mode [Symbol] mode in which ids are searched :single, :multi, nil for old beahvior
