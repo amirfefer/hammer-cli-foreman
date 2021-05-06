@@ -1,5 +1,5 @@
 require 'hammer_cli_foreman/fact'
-require 'hammer_cli_foreman/config_report'∂
+require 'hammer_cli_foreman/config_report'
 require 'hammer_cli_foreman/interface'
 require 'hammer_cli_foreman/hosts/common_update_options'
 require 'hammer_cli_foreman/compute_resource/register_compute_resources'
@@ -54,9 +54,6 @@ module HammerCLIForeman
         field nil, _("Host Group"), Fields::SingleReference, :key => :hostgroup, :display_field => 'title'
         field nil, _("Compute Resource"), Fields::SingleReference, :key => :compute_resource
         field nil, _("Compute Profile"), Fields::SingleReference, :key => :compute_profile, :hide_blank => true
-        field nil, _("Puppet Environment"), Fields::SingleReference, :key => :environment
-        field nil, _("Puppet CA Proxy"), Fields::SingleReference, :key => :puppet_ca_proxy
-        field nil, _("Puppet Master Proxy"), Fields::SingleReference, :key => :puppet_proxy
         field :certname, _("Cert name")
         field :managed, _("Managed"), Fields::Boolean
 

@@ -7,14 +7,9 @@ module HammerCLIForeman
     :usergroups => :user_groups,
     :ptable => :partition_table,
     :ptables => :partition_tables,
-    :environment => :puppet_environment,
-    :environments => :puppet_environments
   }
 
-  RESOURCE_ALIAS_NAME_MAPPING = {
-    environment: :puppet_environment,
-    environments: :puppet_environments
-  }
+  RESOURCE_ALIAS_NAME_MAPPING = { }
 
   def self.foreman_api
     foreman_api_connection
